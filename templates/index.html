@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Experto - Plan Alimenticio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Sistema Experto - Plan Alimenticio</h1>
+        <form method="POST">
+            <label for="peso">¿Cuál es tu peso actual?</label>
+            <select name="peso" id="peso" required>
+                <option value="" disabled {% if not respuestas or respuestas['peso'] == '' %}selected{% endif %}>Seleccionar</option>
+                <option value="menos de 70" {% if respuestas and respuestas['peso'] == 'menos de 70' %}selected{% endif %}>menos de 70</option>
+                <option value="70 a 90" {% if respuestas and respuestas['peso'] == '70 a 90' %}selected{% endif %}>70 a 90</option>
+                <option value="más de 90" {% if respuestas and respuestas['peso'] == 'más de 90' %}selected{% endif %}>más de 90</option>
+            </select>
+            <label for="ejercicio">¿Cuántas horas haces ejercicio al día?</label>
+            <select name="ejercicio" id="ejercicio" required>
+                <option value="" disabled {% if not respuestas or respuestas['ejercicio'] == '' %}selected{% endif %}>Seleccionar</option>
+                <option value="menos de 1 hora" {% if respuestas and respuestas['ejercicio'] == 'menos de 1 hora' %}selected{% endif %}>menos de 1 hora</option>
+                <option value="1 a 2 horas" {% if respuestas and respuestas['ejercicio'] == '1 a 2 horas' %}selected{% endif %}>1 a 2 horas</option>
+                <option value="más de 2 horas" {% if respuestas and respuestas['ejercicio'] == 'más de 2 horas' %}selected{% endif %}>más de 2 horas</option>
+            </select>
+            <label for="objetivo">¿Con este tratamiento buscas resultados estéticos o de salud?</label>
+            <select name="objetivo" id="objetivo" required>
+                <option value="" disabled {% if not respuestas or respuestas['objetivo'] == '' %}selected{% endif %}>Seleccionar</option>
+                <option value="estéticos" {% if respuestas and respuestas['objetivo'] == 'estéticos' %}selected{% endif %}>estéticos</option>
+                <option value="salud" {% if respuestas and respuestas['objetivo'] == 'salud' %}selected{% endif %}>salud</option>
+            </select>
+            <label for="peso_ideal">¿Cuál sería tu peso ideal?</label>
+            <select name="peso_ideal" id="peso_ideal" required>
+                <option value="" disabled {% if not respuestas or respuestas['peso_ideal'] == '' %}selected{% endif %}>Seleccionar</option>
+                <option value="menos de 70" {% if respuestas and respuestas['peso_ideal'] == 'menos de 70' %}selected{% endif %}>menos de 70</option>
+                <option value="70 a 90" {% if respuestas and respuestas['peso_ideal'] == '70 a 90' %}selected{% endif %}>70 a 90</option>
+                <option value="más de 90" {% if respuestas and respuestas['peso_ideal'] == 'más de 90' %}selected{% endif %}>más de 90</option>
+            </select>
+            <label for="compromiso">¿Estás dispuesto a comprometerte para conseguir tus objetivos?</label>
+            <select name="compromiso" id="compromiso" required>
+                <option value="" disabled {% if not respuestas or respuestas['compromiso'] == '' %}selected{% endif %}>Seleccionar</option>
+                <option value="sí" {% if respuestas and respuestas['compromiso'] == 'sí' %}selected{% endif %}>sí</option>
+                <option value="no" {% if respuestas and respuestas['compromiso'] == 'no' %}selected{% endif %}>no</option>
+            </select>
+            <button type="submit">Obtener Plan</button>
+        </form>
+        {% if plan %}
+            <h2>Recomendación: {{ plan }}</h2>
+            {% if plan == "Plan 1" %}
+                <p>Plan alimenticio para resultados estéticos y peso menos de 70:</p>
+                <ul>
+                    <li>Desayuno: Batido de proteínas y frutas.</li>
+                    <li>Almuerzo: Pollo a la parrilla con ensalada.</li>
+                    <li>Cena: Pescado al horno con vegetales.</li>
+                    <li>Snacks: Frutos secos y yogurt.</li>
+                </ul>
+            {% elif plan == "Plan 2" %}
+                <p>Plan alimenticio para salud y peso menos de 70:</p>
+                <ul>
+                    <li>Desayuno: Avena con frutas y nueces.</li>
+                    <li>Almuerzo: Ensalada de quinoa con pollo y aguacate.</li>
+                    <li>Cena: Sopa de vegetales con tofu.</li>
+                    <li>Snacks: Frutas y batidos verdes.</li>
+                </ul>
+            {% elif plan == "Plan 3" %}
+                <p>Plan alimenticio para resultados estéticos y ejercicio moderado:</p>
+                <ul>
+                    <li>Desayuno: Huevos revueltos con espinacas y pan integral.</li>
+                    <li>Almuerzo: Pavo al horno con arroz integral y brócoli.</li>
+                    <li>Cena: Salmón a la parrilla con batata.</li>
+                    <li>Snacks: Barras de proteínas y batidos de frutas.</li>
+                </ul>
+            {% elif plan == "Plan 4" %}
+                <p>Plan alimenticio para salud y ejercicio moderado:</p>
+                <ul>
+                    <li>Desayuno: Yogurt con frutas y granola.</li>
+                    <li>Almuerzo: Ensalada de pollo con vegetales.</li>
+                    <li>Cena: Sopa de lentejas con espinacas.</li>
+                    <li>Snacks: Frutas y frutos secos.</li>
+                </ul>
+            {% elif plan == "Plan 5" %}
+                <p>Plan alimenticio para peso 70 a 90 y ejercicio leve:</p>
+                <ul>
+                    <li>Desayuno: Avena con frutas y nueces.</li>
+                    <li>Almuerzo: Ensalada de quinoa con pollo y aguacate.</li>
+                    <li>Cena: Sopa de vegetales con tofu.</li>
+                    <li>Snacks: Frutas y batidos verdes.</li>
+                </ul>
+            {% elif plan == "Plan 6" %}
+                <p>Plan alimenticio para peso 70 a 90 y salud:</p>
+                <ul>
+                    <li>Desayuno: Yogurt con frutas y granola.</li>
+                    <li>Almuerzo: Ensalada de pollo con vegetales.</li>
+                    <li>Cena: Sopa de lentejas con espinacas.</li>
+                    <li>Snacks: Frutas y frutos secos.</li>
+                </ul>
+            {% elif plan == "Plan 7" %}
+                <p>Plan alimenticio para peso 70 a 90 y ejercicio moderado:</p>
+                <ul>
+                    <li>Desayuno: Huevos revueltos con espinacas y pan integral.</li>
+                    <li>Almuerzo: Pollo a la parrilla con ensalada.</li>
+                    <li>Cena: Salmón a la parrilla con batata.</li>
+                    <li>Snacks: Barras de proteínas y batidos de frutas.</li>
+                </ul>
+            {% elif plan == "Plan 8" %}
+                <p>Plan alimenticio para peso 70 a 90 y salud con ejercicio moderado:</p>
+                <ul>
+                    <li>Desayuno: Avena con frutas y nueces.</li>
+                    <li>Almuerzo: Ensalada de quinoa con pollo y aguacate.</li>
+                    <li>Cena: Sopa de vegetales con tofu.</li>
+                    <li>Snacks: Frutas y batidos verdes.</li>
+                </ul>
+            {% elif plan == "Plan 9" %}
+                <p>Plan alimenticio para peso más de 90 y ejercicio leve:</p>
+                <ul>
+                    <li>Desayuno: Yogurt con frutas y granola.</li>
+                    <li>Almuerzo: Ensalada de pollo con vegetales.</li>
+                    <li>Cena: Sopa de lentejas con espinacas.</li>
+                    <li>Snacks: Frutas y frutos secos.</li>
+                </ul>
+            {% elif plan == "Plan 10" %}
+                <p>Plan alimenticio para peso más de 90 y salud:</p>
+                <ul>
+                    <li>Desayuno: Huevos revueltos con espinacas y pan integral.</li>
+                    <li>Almuerzo: Pollo a la parrilla con ensalada.</li>
+                    <li>Cena: Salmón a la parrilla con batata.</li>
+                    <li>Snacks: Barras de proteínas y batidos de frutas.</li>
+                </ul>
+            {% elif plan == "Plan 11" %}
+                <p>Plan alimenticio para peso más de 90 y ejercicio moderado:</p>
+                <ul>
+                    <li>Desayuno: Avena con frutas y nueces.</li>
+                    <li>Almuerzo: Ensalada de quinoa con pollo y aguacate.</li>
+                    <li>Cena: Sopa de vegetales con tofu.</li>
+                    <li>Snacks: Frutas y batidos verdes.</li>
+                </ul>
+            {% elif plan == "Plan 12" %}
+                <p>Plan alimenticio para peso más de 90 y salud con ejercicio moderado:</p>
+                <ul>
+                    <li>Desayuno: Yogurt con frutas y granola.</li>
+                    <li>Almuerzo: Ensalada de pollo con vegetales.</li>
+                    <li>Cena: Sopa de lentejas con espinacas.</li>
+                    <li>Snacks: Frutas y frutos secos.</li>
+                </ul>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
