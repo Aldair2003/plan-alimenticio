@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Plan Alimenticio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Tu Plan Alimenticio Semanal</h1>
+    {% for dia, comidas in plan.items() %}
+        <h2>{{ dia.capitalize() }}</h2>
+        <p>{{ comidas }}</p>
+    {% endfor %}
+    <a href="/">Volver al cuestionario</a>
+</body>
+</html>
