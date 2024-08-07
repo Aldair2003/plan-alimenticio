@@ -9,18 +9,6 @@ Este proyecto es un sistema experto que genera planes alimenticios personalizado
 - Interfaz de usuario responsiva.
 - Backend en Python con Flask.
 
-## Estructura del Proyecto
-EXAMENFINAL/
-│
-├── pycache/
-├── static/
-│   └── style.css
-├── templates/
-│   ├── index.html
-│   └── resultado.html
-├── app.py
-└── planes_alimenticios.py
-
 ## Tecnologías Utilizadas
 - Python 3
 - Flask
